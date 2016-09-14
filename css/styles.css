@@ -1,0 +1,48 @@
+.container-fluid {
+	background-color: #009999;
+}
+nav {
+
+	font-family: 'Architects Daughter';
+	font-size: 1.3em;
+	color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: white;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+} 
+.form-control {
+	margin: 20px;
+}
+
+.btn-success {
+	background-color: #009999;
+	border-color: #009999;
+}
+
+.btn-success.focus, .btn-success:focus {
+	background-color: #009999;
+	border-color: #009999;
+}
+
+.btn.focus, .btn:focus, .btn:hover {
+	background-color: #009999;
+	border-color: #009999;
+}
+
+body {
+	background-color: #ffffe6;
+	text-align: center;
+	font-family: 'Raleway', sans-serif;
+}
+
+.obj-name {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}

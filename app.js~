@@ -1,0 +1,612 @@
+var main = (function(){
+	return {
+		dictionary: {
+			objects: [
+				{name: 'piekarz', type: 1, main: 'piekarz', inflections: ['piekarz', 'piekarzy', 'piekarzowi', 'piekarzom', 'piekarza', 'piekarzem', 'piekarzami', 'piekarzu', 'piekarzach', 'piekarzu', 'piekarze'], states: []},
+				{name: 'marynarz', type: 1, main: 'marynarz', inflections: ['marynarz', 'marynarze', 'marynarza', 'marynarzy', 'marynarzowi', 'marynarzom', 'marynarzem', 'marynarzami', 'marynarzu', 'marynarzach'], states: []},
+				{name: 'urzędnik', type: 1, main: 'urzędnik', inflections: ['urzędnik', 'urzędnicy', 'urzędnika', 'urzędników', 'urzędnikowi', 'urzędnikom', 'urzędnikiem', 'urzędnikami', 'urzędniku',	'urzędnikach','urzędniczka','urzędniczki','urzędniczek','urzędniczkom','urzędniczkę',	'urzędniczką','urzędniczkami','urzędniczce','urzędniczkach','urzędniczko'], states: []},
+				{name: 'żeglarz', type: 1, main: 'marynarz', inflections: ['żeglarz','żeglarza','żeglarzowi','żeglarzom','żeglarzy','żeglarzem','żeglarzami','żeglarzu','żeglarzach','żeglarze'], states: []},
+				{name: 'programista', type: 1, main: 'programista', inflections: ['programista','programiści','programisty','programistów','programiście','programistom','programistę','programistą','programistami','programistach','programisto'], states: []},
+				{name: 'informatyk', type: 1, main: 'programista', inflections: ['informatyk', 'informatyka', 'informatykowi', 'informatykiem', 'informatyku', 'informatycy', 'informatyków', 'informatykom', 'informatykami', 'informatykach', 'informatyka'], states: []},
+				{name: 'nauczyciel', type: 1, main: 'nauczyciel', inflections: ['nauczyciel','nauczyciele','nauczyciela','nauczycieli','nauczycielowi','nauczycielom','nauczycielem','nauczycielami','nauczycielu','nauczycielach','nauczycielka',	'nauczycielki',	'nauczycielek','nauczycielce','nauczycielkom','nauczycielkę',	'nauczycielką',	'nauczycielkami','nauczycielkach','nauczycielko'], states: []},
+				{name: 'ksiądz', type: 1, main: 'ksiądz', inflections: ['ksiądz', 'księża', 'księdza', 'księży', 'księdzu', 'księżom', 'księdzem', 'księżmi', 'księżach', 'księże'	], states: []},
+				{name: 'duchowny', type: 1, main: 'ksiądz', inflections: ['duchowny','duchowna','duchowni','duchownego','duchownych','duchownemu','duchowną','duchownym','duchownymi','duchownej','duchowne'], states: []},
+				{name: 'zakochany', type: 1, main: 'zakochany', inflections: ['zakochany', 'zakochana', 'zakochane', 'zakochani', 'zakochanego', 'zakochanej', 'zakochanych', 'zakochanemu', 'zakochanym', 'zakochaną', 'zakochaną', 'zakochanymi'], states: []},
+				{name: 'policjant', type: 1, main: 'policjant', inflections: ['policjant', 'policjanta', 'policjantowi', 'policjantem', 'policjancie', 'policjanci', 'policjantów', 'policjantom', 'policjantami', 'policjantach', 'policjantka', 'policjantki', 'policjantce', 'policjantkę', 'policjantką', 'policjantki', 'policjantek', 'policjantkach', 'policjantkami'], states: []},
+				{name: 'tancerz', type: 1, main: 'tancerz', inflections: ['tancerz', 'tancerze', 'tancerza', 'tancerzy', 'tancerzowi', 'tancerzom', 'tancerzem', 'tancerzami', 'tancerzu', 'tancerzach','tancerka','tancerki','tancerek','tancerce','tancerkom','tancerkę',	'tancerką','tancerkami','tancerce','tancerkach','tancerko'], states: []},
+				{name: 'piłkarz', type: 1, main: 'piłkarz', inflections: ['piłkarz', 'piłkarze', 'piłkarzowi', 'piłkarzom', 'piłkarza', 'piłkarzy', 'piłkarzem', 'piłkarzami', 'piłkarzach', 'piłkarzu','piłkarka',	'piłkarki',	'piłkarek','piłkarkom','piłkarkę','piłkarką',	'piłkarkami','piłkarce','piłkarkach','piłkarko'], states: []},
+				{name: 'pieczywo', type: 2, genitive: "pieczywa", main: 'pieczywo', inflections: ['pieczywa', 'pieczyw', 'pieczywu', 'pieczywom', 'pieczywem', 'pieczywami', 'pieczywie', 'pieczywach', 'pieczywo'], states: []},
+				{name: 'mąka', type: 2, genitive: "mąki", main: 'mąka', inflections: ['mąka', 'mąki', 'mąk', 'mąkę', 'mąkom', 'mąką', 'mąkami', 'mące', 'mąkach', 'mąko'], states: []},
+				{name: 'fartuch', type: 2, genitive: "fartucha", main: 'fartuch', inflections: ['fartucha', 'fartuchów', 'fartuchowi','fartuchom','fartuch','fartuchem','fartuchami','fartuchach','fartuchu','fartuchy'], states: []},
+				{name: 'statek', type: 2, genitive: "statku", main: 'statek', inflections: ['statki','statku','statków','statkowi','statkom','statek','statkiem','statkami','statkach'], states: []},
+				{name: 'okręt', type: 2, genitive: "okręcie", main: 'statek', inflections: ['okręt','okrętu','okrętów','okrętowi','okrętom','okręty','okrętem','okrętami','okręcie','okrętach'], states: []},
+				{name: 'świat', type: 2, genitive: "świata", main: 'świat', inflections: ['świata',	'światów','światu',	'światom','świat','światem','światami','świecie',	'światach','świecie',	'światy'], states: []},
+				{name: 'Ziemia', type: 2, genitive: "Ziemi", main: 'świat', inflections: ['Ziemi','Ziemię','Ziemią','Ziemio'], states: []},
+				{name: 'urządzenie', type: 2, genitive: "urządzenia", main: 'urządzenie', inflections: ['urządzeń','urządzeniom','urządzeniem',	'urządzeniami','urządzeniu','urządzeniach','urządzenie','urządzenia'], states: []},
+				{name: 'petent', type: 2, genitive: "petenta", main: 'petent', inflections: ['petent',	'petentowi',	'petentom','petenta',	'petentów','petentem','petentami','petentach','petencie',	'petenci'], states: []},
+				{name: 'klient', type: 2, genitive: 'klientów', main: 'petent', inflections: ['klient', 'klienta', 'klientowi', 'klientem', 'kliencie', 'klienci', 'klientów', 'klientom', 'klientami', 'klientach', 'klientka', 'klientki', 'klientce', 'klientkę', 'klientką', 'klientko', 'klientki', 'klientek', 'klientkom', 'klientkami', 'klientkach'], states: []},
+				{name: 'formularz', type: 2, genitive: "formularza", main: 'formularz', inflections: ['formularza',	'formularzy','formularzowi',	'formularzom','formularz','formularzem','formularzami','formularzach','formularzu',	'formularze'], states: []},
+				{name: 'ankieta', type: 2, genitive: "ankiety", main: 'formularz', inflections: ['ankieta','ankiety','ankiet','ankiecie','ankietom','ankietę','ankietą','ankietami','ankietach','ankieto'], states: []},
+				{name: 'zaświadczenie', type: 2, genitive: "zaświadczenia", main: 'zaświadczenie', inflections: ['zaświadczeń','zaświadczeniom','zaświadczeniem','zaświadczeniami','zaświadczeniu','zaświadczeniach','zaświadczenie','zaświadczenia'], states: []},
+				{name: 'program', type: 2, genitive: "programu", main: 'program', inflections: ['programu',	'programów','programowi',	'programom','program', 'programem',	'programami','programie',	'programach','programy'], states: []},
+				{name: 'aplikacja', type: 2, genitive: "aplikacji", main: 'program', inflections: ['aplikacja','aplikacje','aplikacji','aplikacjom','aplikację','aplikacją','aplikacjami','aplikacjach','aplikacjo'], states: []},
+				{name: 'kod', type: 2, genitive: "kodu", main: 'kod', inflections: ['kodu',	'kodów','kodowi',	'kodom','kod','kodem','kodami','kodach','kodzie','kody'], states: []},
+				{name: 'algorytm', type: 2, genitive: "algorytmu", main: 'algorytm', inflections: ['algorytmu','algorytmów','algorytmowi',	'algorytmom','algorytm','algorytmem',	'algorytmami','algorytmach','algorytmie',	'algorytmy'], states: []},
+				{name: 'uczeń', type: 2, genitive: "ucznia", main: 'uczeń', inflections: ['uczeń','uczniowie','ucznia',	'uczniów','uczniowi',	'uczniom','ucznia','uczniem','uczniami','uczniach','uczniu','uczennica','uczennicy', 'uczennic','uczennicy', 'uczennicom','uczennicę', 'uczennicą', 'uczennicami','uczennicy', 'uczennicach','uczennico', 'uczennice'], states: []},
+				{name: 'obecność', type: 2, genitive: "obecności", main: 'obecność', inflections: ['obecność','obecności','obecnością'], states: []},
+				{name: 'ocena', type: 2, genitive: "oceny", main: 'ocena', inflections: ['ocena','oceny','ocen','ocenom','ocenę','oceną','ocenami','ocenie','ocenach','oceno'], states: []},
+				{name: 'spowiedź', type: 2, genitive: "spowiedzi", main: 'spowiedź', inflections: ['spowiedź',	'spowiedziom','spowiedzią','spowiedziami','spowiedzi','spowiedziach'], states: []},
+				{name: 'grzesznik', type: 2, genitive: "grzesznika", main: 'grzesznik', inflections: ['grzesznikowi', 'grzesznikom','grzesznika', 'grzeszników','grzesznikiem', 'grzesznikami','grzesznikach','grzeszniku',	'grzesznica',	'grzesznic','grzesznicom','grzesznicę',	'grzesznicą', 'grzesznicami','grzesznicy', 'grzesznicach','grzesznico', 'grzesznice'], states: []},
+				{name: 'msza', type: 2, genitive: "mszy", main: 'msza', inflections: ['msza',	'mszom','mszę',	'mszą', 'mszami','mszy', 'mszach','mszo', 'msze'], states: []},
+				{name: 'kwiat', type: 2, genitive: "kwiatu", main: 'kwiat', inflections: ['kwiatu','kwiatów','kwiatowi','kwiatom','kwiat','kwiatem','kwiatami','kwiecie','kwiatach','kwiaty'], states: []},
+				{name: 'serenada', type: 2, genitive: "serenady", main: 'serenada', inflections: ['serenada','serenady', 'serenad','serenadzie', 'serenadom','serenadę','serenadą', 'serenadami','serenadach','serenado'], states: []},
+				{name: 'piosenka', type: 2, genitive: "piosenki", main: 'serenada', inflections: ['piosenka', 'piosenki', 'piosence', 'piosenką', 'piosence', 'piosenki', 'piosenek', 'piosenkom', 'piosenkami', 'piosenkach'], states: []},
+				{name: 'list', type: 2, genitive: "listu", main: 'list', inflections: ['listu', 'listów','listowi', 'listom','list',	'listem', 'listami','listach','liście', 'listy'], states: []},
+				{name: 'bandyta', type: 2, genitive: "bandyty", main: 'bandyta', inflections: ['bandyta','bandyty','bandycie',	'bandytom','bandytę', 'bandytów','bandytą', 'bandytami','bandytach','bandyto', 'bandyci'], states: []},
+				{name: 'zbir', type: 2, genitive: "zbira", main: 'bandyta', inflections: ['zbir','zbiry','zbira','zbirowi','zbirom','zbirów','zbirem','zbirami','zbirze','zbirach'], states: []},
+				{name: 'śledztwo', type: 2, genitive: "śledztwa", main: 'śledztwo', inflections: ['śledztwo',	'śledztwa', 'śledztw', 'śledztwu', 'śledztwom', 'śledztwo', 'śledztwem', 'śledztwami','śledztwie', 'śledztwach'], states: []},
+				{name: 'bezpieczeństwo', type: 2, genitive: "bezpieczeństwa", main: 'bezpieczeństwo', inflections: ['bezpieczeństwa', 'bezpieczeństwu', 'bezpieczeństwem', 'bezpieczeństwie', 'bezpieczeństwo'], states: []},
+				{name: 'walc', type: 2, genitive: "walca", main: 'walc', inflections: [ 'walca', 'walców','walcowi', 'walcom','walc',	'walcem', 'walcami','walcach','walcu', 'walce'], states: []},
+				{name: 'turniej', type: 2, genitive: "turnieju", main: 'turniej', inflections: ['turniejów','turniejowi','turniejom','turniej','turnieje','turniejem','turniejami','turnieju','turniejach'], states: []},
+				{name: 'taniec', type: 2, genitive: "tańca", main: 'taniec', inflections: ['tańca','tańców','tańcowi',	'tańcom','taniec','tańcem',	'tańcami','tańcach','tańcu', 'tańce'], states: []},
+				{name: 'mecz', type: 2, genitive: "meczu", main: 'mecz', inflections: ['mecz',	'meczu','meczów', 'meczy','meczowi','meczom','meczem','meczami','meczach'], states: []},
+				{name: 'piłka', type: 2, genitive: "piłki", main: 'piłka', inflections: ['piłka','piłki','piłek','piłce','piłkom','piłkę',	'piłką','piłkami','piłkach','piłko'], states: []},
+				{name: 'bramka', type: 2, genitive: "bramki", main: 'bramka', inflections: ['bramka',	'bramki',	'bramek','bramce',	'bramkom','bramkę',	'bramką',	'bramkami','bramkach','bramko'], states: []},
+				],
+			actions: [
+				{name: 'pieczenie', main: 'pieczenie', inflections: ['piec', 'piekę', 'pieczesz', 'piecze', 'pieczemy', 'pieczecie', 'pieką', 'piecz', 'pieczmy', 'pieczcie', 'piecząc', 'pieczący', 'piekłem', 'piekłeś', 'piekł', 'piekłam', 'piekłaś', 'piekła', 'piekłom', 'piekłoś', 'piekło', 'piekliśmy', 'piekliście', 'piekli', 'piekłyśmy', 'piekłyście', 'piekły', 'piekłbym', 'piekłbyś', 'piekłby', 'piekłabym', 'piekłabyś', 'piekłyby', 'piekłobym', 'piekłobyś', 'piekłoby', 'pieklibyśmy', 'pieklibyście', 'piekliby', 'piekłybyśmy', 'piekłybyście', 'pieczono', 'pieczony', 'upiec', 'upiekę', 'upieczesz', 'upiecze', 'upieczemy', 'upieczecie', 'upieką', 'upiecz', 'upieczmy', 'upieczcie', 'upiekąc', 'upieczący', 'upiekłem', 'upiekłeś', 'upiekł', 'upiekłam', 'upiekłaś', 'upiekła', 'upiekłom', 'upiekłoś', 'upiekło', 'upiekliśmy', 'upiekliście', 'upiekli', 'upiekłyśmy', 'upiekłyście', 'upiekły', 'upiekłbym', 'upiekłbyś', 'upiekłby', 'upiekłabym', 'upiekłabyś', 'upiekłyby', 'upiekłobym', 'upiekłobyś', 'upiekłoby', 'upieklibyśmy', 'upieklibyście', 'upiekliby', 'upiekłybyśmy', 'upiekłybyście', 'upieczono', 'upieczony','pieczenie']},
+				{name: 'kupowanie', main: 'kupowanie', inflections: ['kupować', 'kupuję', 'kupujesz', 'kupuje', 'kupujemy', 'kupujecie', 'kupują', 'kupuj', 'kupujmy', 'kupujcie', 'kupując', 'kupujący', 'kupowałem', 'kupowałeś', 'kupował', 'kupowałam', 'kupowałaś', 'kupowała', 'kupowałom', 'kupowałoś', 'kupowało', 'kupowaliśmy', 'kupowaliście', 'kupowali', 'kupowałyśmy', 'kupowałyście', 'kupowały', 'kupowałbym', 'kupowałbyś', 'kupowałby', 'kupowałabym', 'kupowałbyś', 'kupowałyby', 'kupowałobym', 'kupowałobyś', 'kupowałoby', 'kupowalibyśmy', 'kupowalibyście', 'kupowaliby', 'kupowałybyśmy', 'kupowałybyście', 'kupowano', 'kupowany', 'kupiwszy', 'kupić', 'kupiłem', 'kupiłeś', 'kupił', 'kupiłam', 'kupiłaś', 'kupiła', 'kupiłom', 'kupiłoś', 'kupiło', 'kupiliśmy', 'kupiliście', 'kupili', 'kupiłyśmy', 'kupiłyście', 'kupiły', 'kupiłbym', 'kupiłbyś', 'kupiłby', 'kupiłabym', 'kupiłbyś', 'kupiłyby', 'kupiłobym', 'kupiłobyś', 'kupiłoby', 'kupilibyśmy', 'kupilibyście', 'kupiliby', 'kupiłybyśmy', 'kupiłybyście', 'kupino', 'kupiny', 'kupowanie']},
+				{name: 'noszenie', main: 'noszenie', inflections: ['nosić','noszenie','noszę','nosisz','nosi','nosimy','nosicie','noszą','nosiłbym','nosiłabym','nosiłbyś','nosiłabyś','nosiłby','nosiłaby','nosiłoby','nosilibyśmy','nosiłybyśmy','nosilibyście','nosiłybyście','nosiliby','nosiłyby','nosiłem','nosiłam','nosiłeś','nosiłaś','nosił','nosiła','nosiło','nosiliśmy','nosiłyśmy','nosiliście','nosiłyście','nosili','nosiły']},
+				{name: 'pływanie', main: 'pływanie', inflections: ['pływać','pływam','pływasz','pływa','pływamy','pływacie','pływają','pływałem','pływałam','pływałeś','pływałaś','pływał','pływała','pływało','pływaliśmy','pływałyśmy','pływaliście','pływałyście','pływali','pływały','pływałbym','pływałabym','pływałbyś','pływałabyś','pływałby','pływałaby','pływałoby','pływalibyśmy','pływałybyśmy','pływalibyście','pływałybyście','pływaliby','pływałyby','pływaj','niech pływa','pływajmy','pływajcie','niech pływają','pływający','pływając','pływano','pływanie']},
+				{name: 'zwiedzanie', main: 'zwiedzanie', inflections: ['zwiedzać','zwiedzam','zwiedzasz','zwiedza','zwiedzamy','zwiedzacie','zwiedzają','zwiedzałem','zwiedzałam','zwiedzałeś','zwiedzałaś','zwiedzał','zwiedzała','zwiedzało','zwiedzaliśmy','zwiedzałyśmy','zwiedzaliście','zwiedzałyście','zwiedzali','zwiedzały','będę zwiedzał','będę zwiedzała','będziesz zwiedzał','będziesz zwiedzała','będzie zwiedzał','będzie zwiedzała','będzie zwiedzało','będziemy zwiedzali','będziemy zwiedzały','będziecie zwiedzali','będziecie zwiedzały','będą zwiedzali','będą zwiedzały','zwiedzałbym','zwiedzałabym','zwiedzałbyś','zwiedzałabyś','zwiedzałby','zwiedzałaby','zwiedzałoby','zwiedzalibyśmy','zwiedzałybyśmy','zwiedzalibyście','zwiedzałybyście','zwiedzaliby','zwiedzałyby','zwiedzaj','niech zwiedza','zwiedzajmy','zwiedzajcie','niech zwiedzają','zwiedzający','zwiedzany','zwiedzając','zwiedzano','zwiedzanie']},
+				{name: 'naprawianie', main: 'naprawianie', inflections: ['naprawiać', 'naprawianie', 'naprawiam', 'naprawiasz', 'naprawia', 'naprawiamy', 'naprawiacie', 'naprawiają', 'naprawiaj', 'naprawiajmy', 'naprawiajcie', 'naprawiając', 'naprawiający', 'naprawiałem', 'naprawiałeś', 'naprawiał', 'naprawiałam', 'naprawiałaś', 'naprawiała', 'naprawiałom', 'naprawiałoś', 'naprawiało', 'naprawialiśmy', 'naprawialiście', 'naprawiali', 'naprawiałyśmy', 'naprawiałyście', 'naprawiały', 'naprawiałbym', 'naprawiałbyś', 'naprawiałby', 'naprawiałabym', 'naprawiałbyś', 'naprawiałyby', 'naprawiałobym', 'naprawiałobyś', 'naprawiałoby', 'naprawialibyśmy', 'naprawialibyście', 'naprawialiby', 'naprawiałybyśmy', 'naprawiałybyście', 'naprawiano', 'naprawiany', 'naprawiwszy']},
+				{name: 'obsługiwanie', main: 'obsługiwanie', inflections: ['obsługiwać', 'obsługiwanie', 'obsługuję', 'obsługujesz', 'obsługuje', 'obsługujemy', 'obsługujecie', 'obsługują', 'obsługuj', 'obsługujmy', 'obsługujcie', 'obsługując', 'obsługujący', 'obsługiwałem', 'obsługiwałeś', 'obsługiwał', 'obsługiwała', 'obsługiwałaś', 'obsługiwałom', 'obsługiwałoś', 'obsługiwało', 'obsługiwaliśmy', 'obsługiwaliście', 'obsługiwali', 'obsługiwałyśmy', 'obsługiwałyście', 'obsługiwały', 'obsługiwałbym', 'obsługiwałbyś', 'obsługiwałby', 'obsługiwałabym', 'obsługiwałabyś', 'obsługiwałaby', 'obsługiwałobym', 'obsługiwałobyś', 'obsługiwałoby', 'obsługiwalibyśmy', 'obsługiwalibyście', 'obsługiwaliby', 'obsługiwałybyśmy', 'obsługiwałybyście', 'obsługiwałyby', 'obsługiwano', 'obsługiwany', 'obsługiwawszy']},
+				{name: 'wypełnianie', main: 'wypełnianie', inflections: ['wypełniać', 'wypełnianie', 'wypełniam', 'wypełniasz', 'wypełnia', 'wypełniamy', 'wypełniacie', 'wypełniają', 'wypełniaj', 'wypełniajmy', 'wypełniajcie', 'wypełniając', 'wypełniający', 'wypełniałem', 'wypełniałeś', 'wypełniał', 'wypełniałam', 'wypełniałaś', 'wypełniała', 'wypełniałom', 'wypełniałoś', 'wypełniało', 'wypełnialiśmy', 'wypełnialiście', 'wypełniali', 'wypełniałyśmy', 'wypełniałyście', 'wypełniały', 'wypełniałbym', 'wypełniałbyś', 'wypełniałby', 'wypełniałabym', 'wypełniałabyś', 'wypełniałaby', 'wypełniałobym', 'wypełniałobyś', 'wypełniałoby', 'wypełnialibyśmy', 'wypełnialibyście', 'wypełnialiby', 'wypełniałybyśmy', 'wypełniałybyście', 'wypełniałyby', 'wypełniano', 'wypełniany', 'wypełniawszy']},
+				{name: 'wydawanie', main: 'wydawanie', inflections: ['wydawać','wydaję','wydajesz','wydaje','wydajemy','wydajecie','wydają','wydawałem','wydawałam','wydawałeś','wydawałaś','wydawał','wydawała','wydawało','wydawaliśmy','wydawałyśmy','wydawaliście','wydawałyście','wydawali','wydawały','wydawałbym','wydawałabym','wydawałbyś','wydawałabyś','wydawałby','wydawałaby','wydawałoby','wydawalibyśmy','wydawałybyśmy','wydawalibyście','wydawałybyście','wydawaliby','wydawałyby','wydawaj','niech wydaje','wydawajmy','wydawajcie','niech wydają','wydający','wydawany','wydając','wydawano','wydawanie']},
+				{name: 'pisanie', main: 'pisanie', inflections: ['pisać', 'pisanie', 'piszę', 'piszesz', 'pisze', 'piszemy', 'piszecie', 'piszą', 'pisz', 'piszmy', 'piszcie', 'pisząc', 'piszący', 'pisałem', 'pisałeś', 'pisał', 'pisałam', 'pisałaś', 'pisała', 'pisałom', 'pisałoś', 'pisało', 'pisaliśmy', 'pisaliście', 'pisali', 'pisałyśmy', 'pisałyście', 'pisały', 'pisałbym', 'pisałbyś', 'pisałby', 'pisałabym', 'pisałbyś', 'pisałyby', 'pisałobym', 'pisałobyś', 'pisałoby', 'pisalibyśmy', 'pisalibyście', 'pisaliby', 'pisałybyśmy', 'pisałybyście', 'pisano', 'pisany', 'pisawszy']},
+				{name: 'testowanie', main: 'testowanie', inflections: ['testować','testuję','testujesz','testuje','testujemy','testujecie','testują','testowałem','testowałam','testowałeś','testowałaś','testował','testowała','testowało','testowaliśmy','testowałyśmy','testowaliście','testowałyście','testowali','testowały','testowałbym','testowałabym','testowałbyś','testowałabyś','testowałby','testowałaby','testowałoby','testowalibyśmy','testowałybyśmy','testowalibyście','testowałybyście','testowaliby','testowałyby','testuj','testujmy','testujcie','testujący','testowany','testując','testowano','testowanie']},
+				{name: 'tworzenie', main: 'tworzenie', inflections: ['tworzyć', 'tworzę', 'tworzysz', 'tworzy', 'tworzymy', 'tworzycie', 'tworzą', 'twórz', 'twórzmy', 'twórzcie', 'tworząc', 'tworzący', 'tworzyłem', 'tworzyłeś', 'tworzył', 'tworzyłam', 'tworzyłaś', 'tworzyła', 'tworzyłom', 'tworzyłoś', 'tworzyło', 'tworzyliśmy', 'tworzyliście', 'tworzyli', 'tworzyłyśmy', 'tworzyłyście', 'tworzyły', 'tworzyłbym', 'tworzyłbyś', 'tworzyłby', 'tworzyłabym', 'tworzyłbyś', 'tworzyłyby', 'tworzyłobym', 'tworzyłobyś', 'tworzyłoby', 'tworzylibyśmy', 'tworzylibyście', 'tworzyliby', 'tworzyłybyśmy', 'tworzyłybyście', 'tworzono', 'tworzony', 'tworzywszy',  'tworzenie']},
+				{name: 'uczenie', main: 'uczenie', inflections: ['uczyć','uczę','uczenie','uczysz','uczy','uczymy','uczycie','uczą','uczyłem','uczyłam','uczyłeś','uczyłaś','uczył','uczyła','uczyło','uczyliśmy','uczyłyśmy','uczyliście','uczyłyście','uczyli','uczyły','uczyłbym','uczyłabym','uczyłbyś','uczyłabyś','uczyłby','uczyłaby','uczyłoby','uczylibyśmy','uczyłybyśmy','uczylibyście','uczyłybyście','uczyliby','uczyłyby','ucz','uczący','uczony','ucząc']},
+				{name: 'sprawdzanie', main: 'sprawdzanie', inflections: ['sprawdzać', 'sprawdzanie', 'sprawdzam', 'sprawdzasz', 'sprawdza', 'sprawdzamy', 'sprawdzacie', 'sprawdzają', 'sprawdzaj', 'sprawdzajmy', 'sprawdzajcie', 'sprawdzając', 'sprawdzający', 'sprawdzałem', 'sprawdzałeś', 'sprawdzał', 'sprawdzałam', 'sprawdzałaś', 'sprawdzała', 'sprawdzałom', 'sprawdzałoś', 'sprawdzało', 'sprawdzaliśmy', 'sprawdzaliście', 'sprawdzali', 'sprawdzałyśmy', 'sprawdzałyście', 'sprawdzały', 'sprawdzałbym', 'sprawdzałbyś', 'sprawdzałby', 'sprawdzałabym', 'sprawdzałabyś', 'sprawdzałaby', 'sprawdzałobym', 'sprawdzałobyś', 'sprawdzałoby', 'sprawdzalibyśmy', 'sprawdzalibyście', 'sprawdzaliby', 'sprawdzałybyśmy', 'sprawdzałybyście', 'sprawdzałyby', 'sprawdzano', 'sprawdzany', 'sprawdzawszy']},
+				{name: 'wystawianie', main: 'wystawianie', inflections: ['wystawiać','wystawiam','wystawiasz','wystawia','wystawiamy','wystawiacie','wystawiają','wystawiałem','wystawiałam','wystawiałeś','wystawiałaś','wystawiał','wystawiała','wystawiało','wystawialiśmy','wystawiałyśmy','wystawialiście','wystawiałyście','wystawiali','wystawiały','wystawiałbym','wystawiałabym','wystawiałbyś','wystawiałabyś','wystawiałby','wystawiałaby','wystawiałoby','wystawialibyśmy','wystawiałybyśmy','wystawialibyście','wystawiałybyście','wystawialiby','wystawiałyby','wystawiaj','wystawiajmy','wystawiajcie','wystawiający','wystawiany','wystawiając','wystawiano','wystawianie']},
+				{name: 'słuchanie', main: 'słuchanie', inflections: ['słuchać','słucham','słuchasz','słucha','słuchamy','słuchacie','słuchają','słuchałem','słuchałam','słuchałeś','słuchałaś','słuchał','słuchała','słuchało','słuchaliśmy','słuchałyśmy','słuchaliście','słuchałyście','słuchali','słuchały','słuchałbym','słuchałabym','słuchałbyś','słuchałabyś','słuchałby','słuchałaby','słuchałoby','słuchalibyśmy','słuchałybyśmy','słuchalibyście','słuchałybyście','słuchaliby','słuchałyby','słuchaj','słuchajmy','słuchajcie','słuchający','słuchany','słuchając','słuchano','słuchanie']},
+				{name: 'rozgrzeszanie', main: 'rozgrzeszanie', inflections: ['rozgrzeszać','rozgrzeszam','rozgrzeszasz','rozgrzesza','rozgrzeszamy','rozgrzeszacie','rozgrzeszają','rozgrzeszałem','rozgrzeszałam','rozgrzeszałeś','rozgrzeszałam','rozgrzeszał','rozgrzeszała','rozgrzeszało','rozgrzeszaliśmy','rozgrzeszałyśmy','rozgrzeszaliście','rozgrzeszałyście','rozgrzeszały','rozgrzeszałbym','rozgrzeszałabym','rozgrzeszałbyś','rozgrzeszałabyś','rozgrzeszałby','rozgrzeszałaby','rozgrzeszałoby','rozgrzeszalibyśmy','rozgrzeszałybyśmy','rozgrzeszalibyście','rozgrzeszałybyście','rozgrzeszaj','rozgrzeszajmy','rozgrzeszajcie','rozgrzeszając','rozgrzeszanie']},
+				{name: 'odprawianie', main: 'odprawianie', inflections: ['odprawiać','odprawiam','odprawiasz','odprawia','odprawiamy','odprawiacie','odprawiają','odprawiałem','odprawiałam','odprawiałeś','odprawiałaś','odprawiał','odprawiała','odprawiało','odprawialiśmy','odprawiałyśmy','odprawialiście','odprawiałyście','odprawiali','odprawiały','odprawiałbym','odprawiałabym','odprawiałbyś','odprawiałabyś','odprawiałby','odprawiałaby','odprawiałoby','odprawialibyśmy','odprawiałybyśmy','odprawialibyście','odprawiałybyście','odprawialiby','odprawiałyby','odprawiaj','odprawiajmy','odprawiajcie','odprawiający','odprawiany','odprawiając','odprawianie']},
+				{name: 'dawanie', main: 'dawanie', inflections: ['dawać', 'dawanie', 'daję', 'dajesz', 'daje', 'dajemy', 'dajecie', 'dają', 'dawaj', 'dajmy', 'dajcie', 'dając', 'dający', 'dałem', 'dałeś', 'dał', 'dałam', 'dałaś', 'dała', 'dałom', 'dałoś', 'dało', 'daliśmy', 'daliście', 'dali', 'dałyśmy', 'dałyście', 'dały', 'dałbym', 'dałbyś', 'dałby', 'dałabym', 'dałbyś', 'dałyby', 'dałobym', 'dałobyś', 'dałoby', 'dalibyśmy', 'dalibyście', 'daliby', 'dałybyśmy', 'dałybyście', 'dano', 'dany', 'dawszy']},
+				{name: 'śpiewanie', main: 'śpiewanie', inflections: ['śpiewać', 'śpiewanie', 'śpiewam', 'śpiewasz', 'śpiewa', 'śpiewamy', 'śpiewacie', 'śpiewają', 'śpiewaj', 'śpiewajmy', 'śpiewacie', 'śpiewając', 'śpiewający', 'śpiewałem', 'śpiewałeś', 'śpiewał', 'śpiewałam', 'śpiewałaś', 'śpiewała', 'śpiewałom', 'śpiewałoś', 'śpiewało', 'śpiewaliśmy', 'śpiewaliście', 'śpiewali', 'śpiewałyśmy', 'śpiewałyście', 'śpiewały', 'śpiewałbym', 'śpiewałbyś', 'śpiewałby', 'śpiewałabym', 'śpiewałbyś', 'śpiewałyby', 'śpiewałobym', 'śpiewałobyś', 'śpiewałoby', 'śpiewalibyśmy', 'śpiewalibyście', 'śpiewaliby', 'śpiewałybyśmy', 'śpiewałybyście', 'śpiewano', 'śpiewany', 'śpiewawszy']},
+				{name: 'łapanie', main: 'łapanie', inflections: ['łapać', 'łapanie', 'łapię', 'łapaiesz', 'łapie', 'łapiemy', 'łapiecie', 'łapią', 'łap', 'łapmy', 'łapcie', 'łapiąc', 'łapiący', 'łapałem', 'łapałeś', 'łapał', 'łapałam', 'łapałaś', 'łapała', 'łapałom', 'łapałoś', 'łapało', 'łapaliśmy', 'łapaliście', 'łapali', 'łapałyśmy', 'łapałyście', 'łapały', 'łapałbym', 'łapałbyś', 'łapałby', 'łapałabym', 'łapałabyś', 'łapałyby', 'łapałobym', 'łapałobyś', 'łapałoby', 'łapalibyśmy', 'łapalibyście', 'łapaliby', 'łapałybyśmy', 'łapałybyście', 'łapano', 'łapany', 'łapawszy']},
+				{name: 'rozwiązywanie', main: 'rozwiązywanie', inflections: ['rozwiązwać','rozwiązję','rozwiązjesz','rozwiązje','rozwiązjemy','rozwiązjecie','rozwiązją','rozwiązwałem','rozwiązwałam','rozwiązwałeś','rozwiązwałaś','rozwiązwał','rozwiązwała','rozwiązwało','rozwiązwaliśmy','rozwiązwałyśmy','rozwiązwaliście','rozwiązwałyście','rozwiązwali','rozwiązwały','rozwiązwałbym','rozwiązwałabym','rozwiązwałbyś','rozwiązwałabyś','rozwiązwałby','rozwiązwałaby','rozwiązwałoby','rozwiązwalibyśmy','rozwiązwałybyśmy','rozwiązwalibyście','rozwiązwałybyście','rozwiązwaliby','rozwiązwałyby','rozwiązj','rozwiązjmy','rozwiązjcie','rozwiązjący','rozwiązwany','rozwiązjąc','rozwiązywanie']},
+				{name: 'pilnowanie', main: 'pilnowanie', inflections: ['pilnować', 'pilnowanie', 'pilnuję', 'pilnujesz', 'pilnuje', 'pilnujemy', 'pilnujecie', 'pilnują', 'pilnuj', 'pilnujmy', 'pilnujcie', 'pilnując', 'pilnujący', 'pilnowałem', 'pilnowałeś', 'pilnował', 'pilnowałam', 'pilnowałaś', 'pilnowała', 'pilnowałom', 'pilnowałoś', 'pilnowało', 'pilnowaliśmy', 'pilnowaliście', 'pilnowali', 'pilnowałyśmy', 'pilnowałyście', 'pilnowały', 'pilnowałbym', 'pilnowałbyś', 'pilnowałby', 'pilnowałabym', 'pilnowałabyś', 'pilnowałyby', 'pilnowałobym', 'pilnowałobyś', 'pilnowałoby', 'pilnowalibyśmy', 'pilnowalibyście', 'pilnowaliby', 'pilnowałybyśmy', 'pilnowałybyście', 'pilnowano', 'pilnowany', 'pilnowawszy']},
+				{name: 'tańczenie', main: 'tańczenie', inflections: ['tańczyć', 'tańczenie', 'tańczę', 'tańczysz', 'tańczy', 'tańczymy', 'tańczycie', 'tańczą', 'tańcz', 'tańczmy', 'tańczcie', 'tańcząc', 'tańczący', 'tańczyłem', 'tańczyłeś', 'tańczył', 'tańczyłam', 'tańczyłaś', 'tańczyła', 'tańczyłom', 'tańczyłoś', 'tańczyło', 'tańczyliśmy', 'tańczyliście', 'tańczyli', 'tańczyłyśmy', 'tańczyłyście', 'tańczyły', 'tańczyłbym', 'tańczyłbyś', 'tańczyłby', 'tańczyłabym', 'tańczyłabyś', 'tańczyłyby', 'tańczyłobym', 'tańczyłobyś', 'tańczyłoby', 'tańczylibyśmy', 'tańczylibyście', 'tańczyliby', 'tańczyłybyśmy', 'tańczyłybyście', 'tańczono', 'tańczony', 'tańczywszy', 'tańczenie']},
+				{name: 'wygrywanie', main: 'wygrywanie', inflections: ['wygrywać','wygrywam','wygrywasz','wygrywa','wygrywamy','wygrywacie','wygrywają','wygrywałem','wygrywałam','wygrywałeś','wygrywałaś','wygrywał','wygrywała','wygrywało','wygrywaliśmy','wygrywałyśmy','wygrywaliście','wygrywałyście','wygrywali','wygrywały','wygrywałbym','wygrywałabym','wygrywałbyś','wygrywałabyś','wygrywałby','wygrywałaby','wygrywałoby','wygrywalibyśmy','wygrywałybyśmy','wygrywalibyście','wygrywałybyście','wygrywaliby','wygrywałyby','wygrywaj','wygrywajmy','wygrywajcie','wygrywający','wygrywany','wygrywając','wygrywano','wygrywanie']},
+				{name: 'ćwiczenie', main: 'ćwiczenie', inflections: ['ćwiczyć', 'ćwiczę', 'ćwiczysz', 'ćwiczy', 'ćwiczymy', 'ćwiczycie', 'ćwiczą', 'ćwicz', 'ćwiczmy', 'ćwiczcie', 'ćwicząc', 'ćwiczący', 'ćwiczyłem', 'ćwiczyłeś', 'ćwiczył', 'ćwiczyłam', 'ćwiczyłaś', 'ćwiczyła', 'ćwiczyłom', 'ćwiczyłoś', 'ćwiczyło', 'ćwiczyliśmy', 'ćwiczyliście', 'ćwiczyli', 'ćwiczyłyśmy', 'ćwiczyłyście', 'ćwiczyły', 'ćwiczyłbym', 'ćwiczyłbyś', 'ćwiczyłby', 'ćwiczyłabym', 'ćwiczyłabyś', 'ćwiczyłaby', 'ćwiczyłobym', 'ćwiczyłobyś', 'ćwiczyłoby', 'ćwiczylibyśmy', 'ćwiczylibyście', 'ćwiczyliby', 'ćwiczyłybyśmy', 'ćwiczyłybyście', 'ćwiczyłyby', 'ćwiczono', 'ćwiczony', 'ćwiczywszy', 'ćwiczenie']},
+				{name: 'granie', main: 'granie', inflections: ['grać', 'gram', 'grasz', 'gra', 'gramy', 'gracie', 'grają', 'graj', 'grajmy', 'gracie', 'grając', 'grający', 'grałem', 'grałeś', 'grał', 'grałam', 'grałaś', 'grała', 'grałom', 'grałoś', 'grało', 'graliśmy', 'graliście', 'grali', 'grałyśmy', 'grałyście', 'grały', 'grałbym', 'grałbyś', 'grałby', 'grałabym', 'grałbyś', 'grałyby', 'grałobym', 'grałobyś', 'grałoby', 'gralibyśmy', 'gralibyście', 'graliby', 'grałybyśmy', 'grałybyście', 'grano', 'grany', 'grawszy',  'granie']},
+				{name: 'kopanie', main: 'kopanie', inflections: ['kopać','kopię','kopiesz','kopie','kopiemy','kopiecie','kopią','kopałem','kopałam','kopałeś','kopałaś','kopał','kopała','kopało','kopaliśmy','kopałyśmy','kopaliście','kopałyście','kopali','kopały','kopałbym','kopałabym','kopałbyś','kopałabyś','kopałby','kopałaby','kopałoby','kopalibyśmy','kopałybyśmy','kopalibyście','kopałybyście','kopaliby','kopałyby','kop','kopmy','kopcie','kopiący','kopany','kopiąc','kopano','kopanie']},
+				{name: 'strzelanie', main: 'strzelanie', inflections: ['strzelać', 'strzelam', 'strzelasz', 'strzela', 'strzelamy', 'strzelacie', 'strzelają', 'strzelaj', 'strzelajmy', 'strzelajcie', 'strzelając', 'strzelający', 'strzelałem', 'strzelałeś', 'strzelał', 'strzelała', 'strzelałaś', 'strzelałom', 'strzelałoś', 'strzelało', 'strzelaliśmy', 'strzelaliście', 'strzelali', 'strzelałyśmy', 'strzelałyście', 'strzelały', 'strzelałbym', 'strzelałbyś', 'strzelałby', 'strzelałabym', 'strzelałabyś', 'strzelałaby', 'strzelałobym', 'strzelałobyś', 'strzelałoby', 'strzelalibyśmy', 'strzelalibyście', 'strzelaliby', 'strzelałybyśmy', 'strzelałybyście', 'strzelałyby', 'strzelano', 'strzelany', 'strzeliwszy', 'ostrzeliwać', 'ostrzeliwuję', 'ostrzeliwujesz', 'ostrzeliwuje', 'ostrzeliwujemy', 'ostrzeliwujecie', 'ostrzeliwują', 'ostrzeliwuj', 'ostrzeliwujmy', 'ostrzeliwujcie', 'ostrzeliwując', 'ostrzeliwujący', 'ostrzeliwywałem', 'ostrzeliwywałeś', 'ostrzeliwywał', 'ostrzeliwywała', 'ostrzeliwywałaś', 'ostrzeliwywałom', 'ostrzeliwywałoś', 'ostrzeliwywało', 'ostrzeliwywaliśmy', 'ostrzeliwywaliście', 'ostrzeliwywali', 'ostrzeliwywałyśmy', 'ostrzeliwywałyście', 'ostrzeliwywały', 'ostrzeliwywałbym', 'ostrzeliwywałbyś', 'ostrzeliwywałby', 'ostrzeliwywałabym', 'ostrzeliwywałabyś', 'ostrzeliwywałaby', 'ostrzeliwywałobym', 'ostrzeliwywałobyś', 'ostrzeliwywałoby', 'ostrzeliwywalibyśmy', 'ostrzeliwywalibyście', 'ostrzeliwywaliby', 'ostrzeliwywałybyśmy', 'ostrzeliwywałybyście', 'ostrzeliwywałyby', 'ostrzeliwywano', 'ostrzeliwywany', 'ostrzeliwawszy', 'strzelanie']}
+				],
+			states:
+			{
+				pieczywo: [['pyszne', 'pyszny', 'pysznego'], ['świeży', 'świeża', 'świeże', 'świeżych', 'świeżej', 'świeżego']],
+				mąka: [['brudne', 'brudna', 'brudny', 'brudnych', 'brudnej', 'brudnego'],['biała','białej','białą','białe','białych','białym','białymi']],
+				fartuch: [['brudne', 'brudna', 'brudny', 'brudnych', 'brudnej', 'brudnego'], ['czysty','czyste','czystego','czystych','czystemu','czystego','czystym','czystymi','czystych']],
+				statek: [['zniszczony', 'zniszczona', 'zniszczone', 'zniszczonych', 'zniszczonej', 'zniszczonego'], ['duże', 'duży', 'duża', 'dużych', 'dużej', 'dużego']],
+				świat: [['duże', 'duży', 'duża', 'dużych', 'dużej', 'dużego'], ['ciekawy', 'ciekawe', 'ciekawa', 'ciekawych', 'ciekawej', 'ciekawego']],
+				urządzenie: [['drogie', 'droga', 'drogi', 'drogich', 'drogiej', 'drogiego'], ['skomplikowane', 'skomplikowany', 'skomplikowana', 'skomplikowanych', 'skomplikowanej', 'skomplikowanego']],
+				petent: [['wymagający', 'wymagająca', 'wymagające', 'wymagających', 'wymagającej', 'wymagającego'], ['natrętny','natrętni','natrętnego','natrętnemu','natrętnych','natrętnym']],
+				formularz: [['skomplikowane', 'skomplikowany', 'skomplikowana', 'skomplikowanych', 'skomplikowanej', 'skomplikowanego'], ['długi','długie','długiego','długiemu']],
+				zaświadczenie: [['stary','stare'], ['brakujące', 'brakująca', 'brakujący', 'brakujących', 'brakującej', 'brakującego']],
+				program: [['skomplikowane', 'skomplikowany', 'skomplikowana', 'skomplikowanych', 'skomplikowanej', 'skomplikowanego'], ['drogie', 'droga', 'drogi', 'drogich', 'drogiej', 'drogiego']],
+				kod: [['skomplikowane', 'skomplikowany', 'skomplikowana', 'skomplikowanych', 'skomplikowanej', 'skomplikowanego'], ['krótki', 'krótkie', 'krótka', 'krótkich', 'krótkiej', 'krótkiego']],
+				algorytm: [['skomplikowane', 'skomplikowany', 'skomplikowana', 'skomplikowanych', 'skomplikowanej', 'skomplikowanego'], ['trudna', 'trudny', 'trudne', 'trudnych', 'trudnej', 'trudnego']],
+				uczeń: [['pilny', 'pilnego','pilnemu','pilna','pilni','pilnym','pilnych','pilne'],['leniwy','leniwa','leniwe','leniwi','leniwej','leniwego','leniwych','leniwemu','leniwym','leniwą','leniwymi']],
+				obecność: [['obowiązkowy','obowiązkowi','obowiązkowej','obowiązkowemu','obowiązkowego','obowiązkową','obowiązkowym','obowiązkowymi','obowiązkowych','obowiązkowa','obowiązkowe'], ['nieobowiązkowy','nieobowiązkowi','nieobowiązkowej','nieobowiązkowemu','nieobowiązkowego','nieobowiązkową','nieobowiązkowym','nieobowiązkowymi','nieobowiązkowych','nieobowiązkowa','nieobowiązkowe']],
+				ocena: [['zły', 'zła', 'złe', 'złych', 'złej', 'złego', 'złą', 'złych'], ['dobry', 'dobra', 'dobre', 'dobrych', 'dobrej']],
+				spowiedź: [['krótki', 'krótkie', 'krótka', 'krótkich', 'krótkiej', 'krótkiego'], ['szczery','szczera','szczere','szczerego','szczerej','szczeremu','szczerego','szczerym']],
+				grzesznik: [['zły', 'zła', 'złe', 'złych', 'złej', 'złego', 'złą', 'złych'], ['przestraszone', 'przestraszony', 'przestraszona', 'przestraszonych', 'przestraszonej', 'przestraszonego']],
+				msza: [['zaplanowana', 'zaplanowany', 'zaplanowane', 'zaplanowanych', 'zaplanowanej', 'zaplanowanego'], ['interesujący', 'interesujące', 'interesująca', 'interesujących', 'interesującej', 'interesującego']],
+				kwiat: [['świeży', 'świeża', 'świeże', 'świeżych', 'świeżej', 'świeżego'], ['żywy','żywych','żywa','żywe','żywego']],
+				serenada: [['romantyczna', 'romantyczne', 'romantyczny', 'romantycznych', 'romantycznej', 'romantycznego'], ['piękna','piękne','pięknej','piękną','piękny']],
+				list: [['staranny', 'staranna', 'staranne', 'starannych', 'starannej', 'starannego'],['romantyczna', 'romantyczne', 'romantyczny', 'romantycznych', 'romantycznej', 'romantycznego']],
+				bandyta: [['niebezpieczny', 'niebezpieczna', 'niebezpieczne', 'niebezpiecznych', 'niebezpiecznej', 'niebezpiecznego'], ['zły', 'zła', 'złe', 'złych', 'złej', 'złego', 'złą', 'złych']],
+				śledztwo: [['krótki', 'krótkie', 'krótka', 'krótkich', 'krótkiej', 'krótkiego'], ['niebezpieczny', 'niebezpieczna', 'niebezpieczne', 'niebezpiecznych', 'niebezpiecznej', 'niebezpiecznego']],
+				bezpieczeństwo: [['całkowity','całkowite','całkowitego','całkowitemu','całkowitym'], ['duże', 'duży', 'duża', 'dużych', 'dużej', 'dużego']],
+				walc: [['piękna','piękne','pięknej','piękną','piękny'], ['wolny','wolna','wolni','wolne','wolnego','wolnemu','wolnym']],
+				turniej: [['trudna', 'trudny', 'trudne', 'trudnych', 'trudnej', 'trudnego'], ['interesujący', 'interesujące', 'interesująca', 'interesujących', 'interesującej', 'interesującego']],
+				taniec: [['piękna','piękne','pięknej','piękną','piękny'], ['romantyczna', 'romantyczne', 'romantyczny', 'romantycznych', 'romantycznej', 'romantycznego']],
+				mecz: [['sportowy', 'sportowa', 'sportowe', 'sportowych', 'sportowej', 'sportowego'],['głośny', 'głośne', 'głośna', 'głośnych', 'głośnej', 'głośnego']],
+				piłka: [['okrągły','okrągła','okrągłe','okrągłej','okrągłą'], ['nożna', 'nożnej']],
+				bramka: [['piękna','piękne','pięknej','piękną','piękny'], ['widowiskowy', 'widowiskowe', 'widowiskowa', 'widowiskową', 'widowiskowych']]
+			}
+		},
+		rules: [
+			{
+				actor: 'piekarz',
+				action: 'pieczenie',
+				object: 'pieczywo',
+				print: 'pieczenie pieczywa',
+				print_one: 'pieczenie pysznego pieczywa',
+				print_two: 'pieczenie świeżego pieczywa'
+			},
+			{
+				actor: 'piekarz',
+				action: 'kupowanie',
+				object: 'mąka',
+				print: 'kupowanie mąki',
+				print_one: 'kupowanie brudnej mąki',
+				print_two: 'kupowanie białej mąki'
+			},
+			{
+				actor: 'piekarz',
+				action: 'noszenie',
+				object: 'fartuch',
+				print: 'noszenie fartucha',
+				print_one: 'noszenie brudnego fartucha',
+				print_two: 'noszenie czystego fartucha'
+			},
+			{
+				actor: 'marynarz',
+				action: 'pływanie',
+				object: 'statek',
+				print: 'pływanie statkiem',
+				print_one: 'pływanie zniszczonym statkiem',
+				print_two: 'pływanie dużym statkiem'
+			},
+			{
+				actor: 'marynarz',
+				action: 'zwiedzanie',
+				object: 'świat',
+				print: 'zwiedzanie świata',
+				print_one: 'zwiedzanie dużego świata',
+				print_two: 'zwiedzanie ciekawego świata'
+			},
+			{
+				actor: 'marynarz',
+				action: 'naprawianie',
+				object: 'urządzenie',
+				print: 'naprawianie urządzeń',
+				print_one: 'naprawianie drogich urządzeń',
+				print_two: 'naprawianie skomplikowanych urządzeń'
+			},
+			{
+				actor: 'urzędnik',
+				action: 'obsługiwanie',
+				object: 'petent',
+				print: 'obsługiwanie petentów',
+				print_one: 'obsługiwanie wymagających petentów',
+				print_two: 'obsługiwanie natrętnych petentów'
+			},
+			{
+				actor: 'urzędnik',
+				action: 'wypełnianie',
+				object: 'formularz',
+				print: 'wypełnianie formularza',
+				print_one: 'wypełnianie skomplikowanego formularza',
+				print_two: 'wypełnianie długiego formularza'
+			},
+			{
+				actor: 'urzędnik',
+				action: 'wydawanie',
+				object: 'zaświadczenie',
+				print: 'wydawanie zaświadczenia',
+				print_one: 'wydawanie starego zaświadczenia',
+				print_two: 'wydawanie brakującego zaświadczenia'
+			},
+			{
+				actor: 'programista',
+				action: 'pisanie',
+				object: 'program',
+				print: 'pisanie programu',
+				print_one: 'pisanie skomplikowanego programu',
+				print_two: 'pisanie drogiego programu'
+			},
+			{
+				actor: 'programista',
+				action: 'testowanie',
+				object: 'kod',
+				print: 'testowanie kodu',
+				print_one: 'testowanie skomplikowanego kodu',
+				print_two: 'testowanie krótkiego kodu'
+			},
+			{
+				actor: 'programista',
+				action: 'tworzenie',
+				object: 'algorytm',
+				print: 'tworzenie algorytmu',
+				print_one: 'tworzenie skomplikowanego algorytmu',
+				print_two: 'tworzenie trudnego algorytmu'
+			},
+			{
+				actor: 'nauczyciel',
+				action: 'uczenie',
+				object: 'uczeń',
+				print: 'uczenie uczniów',
+				print_one: 'uczenie pilnych uczniów',
+				print_two: 'uczenie leniwych uczniów'
+			},
+			{
+				actor: 'nauczyciel',
+				action: 'sprawdzanie',
+				object: 'obecność',
+				print: 'sprawdzanie obecności',
+				print_one: 'sprawdzanie obowiązkowej obecności',
+				print_two: 'sprawdzanie nieobowiązkowej obecności'
+			},
+			{
+				actor: 'nauczyciel',
+				action: 'wystawianie',
+				object: 'ocena',
+				print: 'wystawianie ocen',
+				print_one: 'wystawianie złych ocen',
+				print_two: 'wystawianie dobrych ocen'
+			},
+			{
+				actor: 'ksiądz',
+				action: 'słuchanie',
+				object: 'spowiedź',
+				print: 'słuchanie spowiedzi',
+				print_one: 'słuchanie krótkiej spowiedzi',
+				print_two: 'słuchanie szczerej spowiedzi'
+			},
+			{
+				actor: 'ksiądz',
+				action: 'rozgrzeszanie',
+				object: 'grzesznik',
+				print: 'rozgrzeszanie grzeszników',
+				print_one: 'rozgrzeszanie złych grzeszników',
+				print_two: 'rozgrzeszanie przestraszonych grzeszników'
+			},
+			{
+				actor: 'ksiądz',
+				action: 'odprawianie',
+				object: 'msza',
+				print: 'odprawianie mszy',
+				print_one: 'odprawianie zaplanowanych mszy',
+				print_two: 'odprawianie interesujących mszy'
+			},
+			{
+				actor: 'zakochany',
+				action: 'dawanie',
+				object: 'kwiat',
+				print: 'dawanie kwiatów',
+				print_one: 'dawanie świeżych kwiatów',
+				print_two: 'dawanie żywych kwiatów'
+			},
+			{
+				actor: 'zakochany',
+				action: 'śpiewanie',
+				object: 'serenada',
+				print: 'śpiewanie serenad',
+				print_one: 'śpiewanie romantycznych serenad',
+				print_two: 'śpiewanie pięknych serenad'
+			},
+			{
+				actor: 'zakochany',
+				action: 'pisanie',
+				object: 'list',
+				print: 'pisanie listów',
+				print_one: 'pisanie starannych listów',
+				print_two: 'pisanie romantycznych listów'
+			},
+			{
+				actor: 'policjant',
+				action: 'łapanie',
+				object: 'bandyta',
+				print: 'łapanie bandytów',
+				print_one: 'łapanie niebezpiecznych bandytów',
+				print_two: 'łapanie złych bandytów'
+			},
+			{
+				actor: 'policjant',
+				action: 'rozwiązywanie',
+				object: 'śledztwo',
+				print: 'rozwiązywanie śledztw',
+				print_one: 'rozwiązywanie krótkich śledztw',
+				print_two: 'rozwiązywanie niebezpiecznych śledztw'
+			},
+			{
+				actor: 'policjant',
+				action: 'pilnowanie',
+				object: 'bezpieczeństwo',
+				print: 'pilnowanie bezpieczeństwa',
+				print_one: 'pilnowanie całkowitego bezpieczeństwa',
+				print_two: 'pilnowanie dużego bezpieczeństwa'
+			},
+			{
+				actor: 'tancerz',
+				action: 'tańczenie',
+				object: 'walc',
+				print: 'tańczenie walca',
+				print_one: 'tańczenie pięknego walca',
+				print_two: 'tańczenie wolnego walca'
+			},
+			{
+				actor: 'tancerz',
+				action: 'wygrywanie',
+				object: 'turniej',
+				print: 'wygrywanie turniejów',
+				print_one: 'wygrywanie trudnych turniejów',
+				print_two: 'wygrywanie interesujących turniejów'
+			},
+			{
+				actor: 'tancerz',
+				action: 'ćwiczenie',
+				object: 'taniec',
+				print: 'ćwiczenie tańca',
+				print_one: 'ćwiczenie pięknego tańca',
+				print_two: 'ćwiczenie romantycznego tańca'
+			},
+			{
+				actor: 'piłkarz',
+				action: 'granie',
+				object: 'mecz',
+				print: 'granie meczu',
+				print_one: 'granie sportowego meczu',
+				print_two: 'granie głośnego meczu'
+			},
+			{
+				actor: 'piłkarz',
+				action: 'kopanie',
+				object: 'piłka',
+				print: 'kopanie piłki',
+				print_one: 'kopanie okrągłej piłki',
+				print_two: 'kopanie nożnej piłki'
+			},
+			{
+				actor: 'piłkarz',
+				action: 'strzelanie',
+				object: 'bramka',
+				print: 'strzelanie bramek',
+				print_one: 'strzelanie pięknych bramek',
+				print_two: 'strzelanie widowiskowych bramek'
+			}
+
+		],
+		print_rules: function(){
+			$('#rules').removeClass('inactive');
+
+			$('#viewer').html('');
+			$('#viewer').append('<h3>Reguły:</h3><br>');
+			_.each(main.rules, function(rule){
+				$('#viewer').append('<p>JEŻELI '+ '<b>' + rule.actor + '</b>' + ' TO ' + rule.print+'</p>');
+				$('#viewer').append('<br>');
+			});
+		},
+		print_symbols: function(){
+			$('#symbols').removeClass('inactive');
+
+			$('#viewer').html('');
+			$('#viewer').append('<div id="viewer_left" class="viewer-divider"></div>');
+			$('#viewer').append('<div id="viewer_center" class="viewer-divider"></div>');
+			$('#viewer').append('<div id="viewer_right" class="viewer-divider"></div>');
+
+			$('#viewer_left').append('<h3>Obiekty:</h3><br>');
+			_.each(main.dictionary.objects, function(object){
+				if(object.name === object.main){
+					$('#viewer_left').append('<p>'+object.name+'</p>');
+				}
+			});
+
+			$('#viewer_center').append('<h3>Akcje:</h3><br>');
+			_.each(main.dictionary.actions, function(action){
+				if(action.name === action.main){
+					$('#viewer_center').append('<p>'+action.name+'</p>');
+				}
+			});
+			$('#viewer').append('<br>');
+			$('#viewer_right').append('<h3>Stany:</h3><br>');
+			_.each(main.dictionary.states, function(value, key){
+				$('#viewer_right').append('<p><strong>' + key + '</strong></span> - ' + '<span>&nbsp;&nbsp;' + value[0][0] + ', ' + value[1][0] + '</p>');
+			});
+		},
+		print_inflections: function(){
+			$('#inflections').removeClass('inactive');
+
+			$('#viewer').html('');
+			$('#viewer').append('<h3>Odmiana:</h3><br>');
+			_.each(main.dictionary.objects.concat(main.dictionary.actions), function(obj){
+				$('#viewer').append('<p class="obj-name">'+obj.name+'</p>' + '<p class="obj-infl">' + obj.inflections.join(', ') + '</p>');
+			});
+		},
+		print_synonyms: function(){
+			$('#synonyms').removeClass('inactive');
+
+			$('#viewer').html('');
+			$('#viewer').append('<h3>Synonimy:</h3><br>');
+			_.each(main.dictionary.objects.concat(main.dictionary.actions), function(obj){
+				if(obj.name == obj.main){
+					var synonyms = _.filter(main.dictionary.objects.concat(main.dictionary.actions), function(e){ return e.main === obj.name && e.name !== obj.name; });
+					synonyms = _.map(synonyms, function(e){ return e.name; });
+                    if(synonyms != ""){
+												$('#viewer').append('<p class="'+obj.name+'"></p>')
+                        $('.'+obj.name).append(obj.name + ' = ');
+                        $('.'+obj.name).append(synonyms.join(', '));
+                    }
+				}
+			});
+		},
+		show_main_page: function(){
+			$('#main-page').removeClass('inactive');
+
+			$('#viewer').html('');
+			$('#viewer').append('<p class="center">Twoje zapytanie musi zawierać podmiot lub akcję i przedmiot.</p>');
+		}
+	};
+})();
+
+function Application(){
+	var actor = '',
+		action = '',
+		object = '',
+		genitive = '',
+		previous = '',
+		answer = [];
+
+	this.text = [];
+
+	this.actor = function(){ return actor; };
+
+	this.action = function(){ return action; };
+
+	this.object = function(){ return object; };
+
+	this.answer = function(){ return answer; };
+
+	this.get_words_from = function(text){
+		return _.map(text.match(/\S+/g), function(word){ return word.replace(/[^a-zA-ZęóąśłżźćńĘÓĄŚŁŻŹĆŃ]/g, '').toLowerCase(); });
+	};
+
+	this.find_actor = function(){
+		var result = '';
+		var len = main.dictionary.objects.length;
+		for(var i = 0; i < this.text.length; i++){
+			if(actor.length > 0) { break; }
+			var word = this.text[i];
+			for(var j = 0; j < len; j++){
+				if(main.dictionary.objects[j].type === 2){ continue; }
+				var result = _.find(main.dictionary.objects[j].inflections, function(w){ return word === w; });
+				if(result){
+					actor = main.dictionary.objects[j].main;
+					this.text.splice(i, 1);
+					break;
+				}
+			}
+		}
+	};
+
+	this.find_action = function(){
+		var result = '';
+		var len = main.dictionary.actions.length;
+		for(var i = 0; i < this.text.length; i++){
+			if(action.length > 0) { break; }
+			var word = this.text[i];
+			for(var j = 0; j < len; j++){
+				var result = _.find(main.dictionary.actions[j].inflections, function(w){ return word === w; });
+				if(result){
+					action = main.dictionary.actions[j].main;
+					this.text.splice(i, 1);
+					break;
+				}
+			}
+		}
+	};
+
+	this.find_object = function(){
+		var result = '';
+		var len = main.dictionary.objects.length;
+		for(var i = 0; i < this.text.length; i++){
+			if(object.length > 0) { break; }
+			var word = this.text[i];
+			for(var j = 0; j < len; j++){
+				if(main.dictionary.objects[j].type === 1){ continue; }
+				var result = _.find(main.dictionary.objects[j].inflections, function(w){ return word === w; });
+				if(result){
+					object = main.dictionary.objects[j].main;
+					genitive = main.dictionary.objects[j].genitive;
+					if(i > 0){
+						previous = this.text[i-1]
+					}
+					this.text.splice(i, 1);
+					break;
+				}
+			}
+		}
+	};
+
+	this.find_state = function(){
+		var result = 0;
+		if(previous.length > 0){
+			for(var i = 0; i < main.dictionary.states[object].length; i++){
+				var check = _.find(main.dictionary.states[object][i], function(w){ return previous === w; });
+				if(check){
+					result = i + 1;
+					break;
+				}
+			}
+		}
+		console.log(result);
+		return result;
+	};
+
+	this.check_rules = function(){
+		if(actor === ''){
+			if(action != '' && object != ''){
+				var arr = [];
+				var res = _.filter(main.rules, function(r){ return r.action === action && r.object === object; });
+				// answer = ['=== NIE']
+				_.each(res, function(r){answer.push(r.print + ' możliwe: ' + r.actor)});
+                if(answer == ''){
+                    answer = ["Niepoprawne połączenie akcji z przedmiotem."];
+                }
+				return;
+			}else{
+				answer = ["Twoje zapytanie musi zawierać podmiot lub akcję i przedmiot."];
+				return;
+			}
+		}else if(action === ''){
+			answer = ['']
+			var results = _.where(main.rules, {actor: actor});
+			_.each(results, function(r){answer.push(r.actor + ' możliwe: ' + r.print)});
+			return;
+		}
+		var result = _.find(main.rules, function(r){ return r.actor === actor && r.action === action && r.object === object; });
+		if(result){
+			var has_state = this.find_state();
+			var print = result.print;
+			if(has_state === 1){
+				print = result.print_one;
+			}else if(has_state === 2){
+				print = result.print_two
+			}
+			answer = ['<p class="green small-margin">TAK</p>', actor + ' możliwe: ' + print];
+		}else{
+			answer = ['<p class="red small-margin">NIE</p>', actor + ' niemożliwe: ' + action + ' ' + genitive];
+		}
+
+        if(answer == ''){
+            answer = ["Twoje zapytanie musi zawierać podmiot lub akcję i przedmiot."];
+        }
+	};
+
+	this.print_answer = function(){
+		$('#answer').html('');
+		_.each(answer, function(el){
+			$('#answer').append(el);
+			$('#answer').append('<br>');
+		});
+	};
+};
+
+$('#rules').click(main.print_rules);
+$('#symbols').click(main.print_symbols);
+$('#inflections').click(main.print_inflections);
+$('#synonyms').click(main.print_synonyms);
+$('#main-page').click(main.show_main_page);
+
+var app;
+
+$("#search-form").keyup(function(event){
+    if(event.keyCode == 13){
+			app = new Application();
+			var text = $(this).val();
+			app.text = app.get_words_from(text);
+			app.find_actor();
+			app.find_action();
+			app.find_object();
+			app.check_rules();
+			app.print_answer();
+    }
+});
+
+$('#searcher').on('click', function(){
+	app = new Application();
+	var text = $("#search-form").val();
+	app.text = app.get_words_from(text);
+	app.find_actor();
+	app.find_action();
+	app.find_object();
+	app.check_rules();
+	app.print_answer();
+});
+
+main.show_main_page();
+
