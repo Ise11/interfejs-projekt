@@ -63,6 +63,7 @@ var main = (function(){
 				{name: 'tworzenie', main: 'tworzenie', inflections: ['tworzyć', 'tworzę', 'tworzysz', 'tworzy', 'tworzymy', 'tworzycie', 'tworzą', 'twórz', 'twórzmy', 'twórzcie', 'tworząc', 'tworzący', 'tworzyłem', 'tworzyłeś', 'tworzył', 'tworzyłam', 'tworzyłaś', 'tworzyła', 'tworzyłom', 'tworzyłoś', 'tworzyło', 'tworzyliśmy', 'tworzyliście', 'tworzyli', 'tworzyłyśmy', 'tworzyłyście', 'tworzyły', 'tworzyłbym', 'tworzyłbyś', 'tworzyłby', 'tworzyłabym', 'tworzyłbyś', 'tworzyłyby', 'tworzyłobym', 'tworzyłobyś', 'tworzyłoby', 'tworzylibyśmy', 'tworzylibyście', 'tworzyliby', 'tworzyłybyśmy', 'tworzyłybyście', 'tworzono', 'tworzony', 'tworzywszy',  'tworzenie']},
 				{name: 'pisanie', main: 'pisanie', inflections: ['pisać', 'pisanie', 'piszę', 'piszesz', 'pisze', 'piszemy', 'piszecie', 'piszą', 'pisz', 'piszmy', 'piszcie', 'pisząc', 'piszący', 'pisałem', 'pisałeś', 'pisał', 'pisałam', 'pisałaś', 'pisała', 'pisałom', 'pisałoś', 'pisało', 'pisaliśmy', 'pisaliście', 'pisali', 'pisałyśmy', 'pisałyście', 'pisały', 'pisałbym', 'pisałbyś', 'pisałby', 'pisałabym', 'pisałbyś', 'pisałyby', 'pisałobym', 'pisałobyś', 'pisałoby', 'pisalibyśmy', 'pisalibyście', 'pisaliby', 'pisałybyśmy', 'pisałybyście', 'pisano', 'pisany', 'pisawszy']},
 				{name: 'planowanie', main: 'planowanie', inflections: ['planować', 'planuję', 'planujesz', 'planuje', 'planujemy', 'planujecie', 'planują', 'planuj', 'planujmy', 'planujcie', 'planując', 'planujący', 'planowałem', 'planowałeś', 'planował', 'planowałam', 'planowałaś', 'planowała', 'planowałom', 'planowałoś', 'planowało', 'planowaliśmy', 'planowaliście', 'planowali', 'planowałyśmy', 'planowałyście', 'planowały', 'planowałbym', 'planowałbyś', 'planowałby', 'planowałabym', 'planowałbyś', 'planowałyby', 'planowałobym', 'planowałobyś', 'planowałoby', 'planowalibyśmy', 'planowalibyście', 'planowaliby', 'planowałybyśmy', 'planowałybyście', 'planowano', 'planowany', 'planowawszy', 'planować', 'planowałem', 'planowałeś', 'planował', 'planowałam', 'planowałaś', 'planowała', 'planowałom', 'planowałoś', 'planowało', 'planowaliśmy', 'planowaliście', 'planowali', 'planowałyśmy', 'planowałyście', 'planowały', 'planowałbym', 'planowałbyś', 'planowałby', 'planowałabym', 'planowałbyś', 'planowałyby', 'planowałobym', 'planowałobyś', 'planowałoby', 'planowalibyśmy', 'planowalibyście', 'planowaliby', 'planowałybyśmy', 'planowałybyście', 'planowano', 'planowany', 'planowanie']},
+				{name: 'wygrywanie', main: 'wygrywanie', inflections: ['wygrywać','wygrywam','wygrywasz','wygrywa','wygrywamy','wygrywacie','wygrywają','wygrywałem','wygrywałam','wygrywałeś','wygrywałaś','wygrywał','wygrywała','wygrywało','wygrywaliśmy','wygrywałyśmy','wygrywaliście','wygrywałyście','wygrywali','wygrywały','wygrywałbym','wygrywałabym','wygrywałbyś','wygrywałabyś','wygrywałby','wygrywałaby','wygrywałoby','wygrywalibyśmy','wygrywałybyśmy','wygrywalibyście','wygrywałybyście','wygrywaliby','wygrywałyby','wygrywaj','wygrywajmy','wygrywajcie','wygrywający','wygrywany','wygrywając','wygrywano','wygrywanie']},
 
 				],
 			states:
@@ -70,7 +71,7 @@ var main = (function(){
 				klient: [['ważne', 'ważny', 'ważnego'], ['bogaty', 'bogata', 'bogate', 'bogatych', 'bogatej', 'bogatego']],
 				gwiazda: [['jasna','jasne','jasnej','jasną','jasny'], ['odległy', 'odległa', 'odległe', 'odległych', 'odległej', 'odległego', 'odległą', 'odległych']],
 				choreografia: [['piękna','piękne','pięknej','piękną','piękny'], ['trudna', 'trudny', 'trudne', 'trudnych', 'trudnej', 'trudnego']],
-				konkurs: [['międzynarodowa','międzynarodowe','międzynarodowej','międzynarodową','międzynarodowy'], ['prestiżowy', 'prestiżowa', 'prestiżowe', 'prestiżowych', 'prestiżowej', 'prestiżowego']],
+				konkurs: [['międzynarodowa','międzynarodowe', 'międzynarodowego','międzynarodowej','międzynarodową','międzynarodowy'], ['prestiżowy', 'prestiżowa', 'prestiżowe', 'prestiżowych', 'prestiżowej', 'prestiżowego']],
 				mysz: [['zwinna','zwinne','zwinnej','zwinną','zwinny'], ['sprytna', 'sprytny', 'sprytne', 'sprytnych', 'sprytnej', 'sprytnego']],
 				karma: [['smaczna','smaczne','smacznej','smaczną','smaczny'], ['odległy', 'odległa', 'odległe', 'odległych', 'odległej', 'odległego', 'odległą', 'odległych']],
 				lek: [['drogie', 'droga', 'drogi', 'drogich', 'drogiej', 'drogiego'], ['skuteczne', 'skuteczny', 'skuteczna', 'skutecznych', 'skutecznej', 'skutecznego']],
@@ -206,6 +207,30 @@ var main = (function(){
 				print_one: 'doradzanie ważnemu klientowi',
 				print_two: 'doradzanie bogatemu klientowi'
 			},
+						{
+                                actor: 'tancerz',
+                                action: 'układanie',
+                                object: 'choregografia',
+                                print: 'układanie choreografii',
+                                print_one: 'układanie pięknej choreografii',
+                                print_two: 'układanie trudnej choreografii'
+                        },
+                        	{
+                                actor: 'tancerz',
+                                action: 'tańczenie',
+                                object: 'choregografia',
+                                print: 'układanie choreografii',
+                                print_one: 'tańczenie pięknej choreografii',
+                                print_two: 'tańczenie trudnej choreografii'
+                        },
+                        {
+                                actor: 'tancerz',
+                                action: 'wygrywanie',
+                                object: 'konkurs',
+                                print: 'wygrywanie konkursu',
+                                print_one: 'wygrywanie międzynarodowego  konkursu',
+                                print_two: 'wygrywanie prestiżowego konkursu'
+                        },
 			{
 				actor: 'kwiaciarka',
 				action: 'układanie',
